@@ -1,0 +1,68 @@
+**Chatbot de Atendimento da Polimat[IA] - Base de Conhecimento**
+
+### Bem-vindo à Polimat[IA]!
+A Polimat[IA] é uma companhia especializada na criação de agentes inteligentes para automação de processos de negócios. No momento, oferecemos dois produtos altamente eficazes e de rápida implementação para otimizar o atendimento e a captação de clientes para sua empresa.
+
+---
+
+## 🔹 **1. Chatbot para Agendamento no Google Calendar**
+
+### 📌 O que é?
+Nosso **Chatbot de Agendamento** é uma solução automatizada que facilita a marcação de compromissos diretamente no **Google Calendar**. Ele interage com seus clientes por meio de mensagens e guia o usuário no processo de agendamento, verificando automaticamente a disponibilidade de horários e evitando conflitos.
+
+### 🚀 Benefícios:
+- Agendamentos automatizados, sem necessidade de intervenção humana.
+- Integração direta com o Google Calendar.
+- Sugestão de horários alternativos caso a agenda esteja cheia.
+- Redução de falhas humanas e conflitos de horário.
+- Melhora na experiência do cliente ao oferecer um processo rápido e eficiente.
+
+### 📣 Como funciona?
+1. O cliente inicia a conversa com o chatbot pelo site, WhatsApp ou outra plataforma integrada.
+2. O chatbot coleta as informações necessárias (nome, data desejada, serviço requerido).
+3. Ele consulta o Google Calendar e apresenta os horários disponíveis.
+4. Após a confirmação do cliente, o compromisso é registrado automaticamente no calendário.
+5. O cliente recebe uma notificação de confirmação e lembretes automáticos.
+
+✅ **Ideal para:** clínicas, consultórios, academias, salões de beleza, imobiliárias, entre outros negócios que operam com agendamentos.
+
+---
+
+## 🔹 **2. Agente de Captação de Leads em Redes Sociais**
+
+### 📌 O que é?
+Nosso **Agente de Captação de Leads** monitora **redes sociais** em busca de potenciais clientes que demonstram interesse em produtos ou serviços de seus concorrentes. A IA analisa comentários, postagens e interações, identificando usuários que possam ser abordados com ofertas mais atrativas.
+
+### 🚀 Benefícios:
+- Identificação automática de clientes em potencial com base no interesse real deles.
+- Capacidade de abordagem automatizada ou armazenamento dos perfis para ações futuras.
+- Aumento significativo na taxa de conversão de novos clientes.
+- Redução no tempo e custo de aquisição de clientes.
+- Personalização de estratégias de prospecção com base em dados reais.
+
+### 📣 Como funciona?
+1. O agente varre redes sociais (Instagram, Twitter, Facebook, LinkedIn) em busca de menções e interações relevantes.
+2. Ele identifica usuários interessados em produtos de concorrentes ou que fazem perguntas relacionadas ao setor.
+3. Dependendo da configuração, ele pode:
+   - **Enviar mensagens automatizadas** para abordar esses clientes.
+   - **Armazenar os perfis** em um banco de dados para contato posterior.
+4. Sua equipe pode então utilizar esses dados para personalizar campanhas de marketing e conversão.
+
+✅ **Ideal para:** e-commerces, SaaS, empresas de serviços, imobiliárias, academias, consultorias e qualquer empresa que busca aumentar sua base de clientes de forma estratégica.
+
+---
+
+## 🔹 **Por que escolher a Polimat[IA]?**
+- Implementação **rápida** e **eficaz**.
+- Soluções personalizáveis para atender às necessidades específicas do seu negócio.
+- Tecnologia avançada baseada em **IA e automação**.
+- Suporte técnico e atualizações constantes.
+
+### 🔥 **Quer saber mais ou contratar um dos nossos produtos?**
+Entre em contato conosco e descubra como podemos transformar o seu negócio com automação inteligente!
+
+---
+
+Este documento serve como referência para o chatbot do site da Polimat[IA], garantindo que ele forneça informações detalhadas e úteis para possíveis clientes interessados em nossas soluções.
+
+
