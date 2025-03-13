@@ -1,14 +1,15 @@
 import openai
 from dotenv import load_dotenv, find_dotenv
-import time
 
 _ = load_dotenv(find_dotenv())
 
 client = openai.Client()
 
-#Criação do Assistant
+#Criação do Assistant rápido sem vector store, apenas um prompt
+#para direcionamento geral
+
 assitant = client.beta.assistants.create(
-    name="polimatIA website chatbot",
+    name="polimatIA website chatbot_0.0_betaTesting",
     instructions='Você é um chatbot que tem a função de informar clientes sobre as possibilidades \
                   de automação com inteligência artificial para negócios, ajudando empresas a \
                   entender como a IA pode otimizar processos, reduzir custos e aumentar a eficiência.\
@@ -31,44 +32,4 @@ assitant = client.beta.assistants.create(
     model='gpt-4o-mini'
 )
 
-#criação de uma thread
-thread = client.beta.threads.creat()
-
-#Adição de mensagem na thread
-message = client.beta.threads.messages.create(
-    thread_id=thread.id,
-    role='user',
-    content='' #Pergunta inicial de criação do Assistente
-)
-
-
-
-#Roda a thread no assistant
-run = client.beta.threads.runs.create(
-    thread_id=thread.id,
-    assistant_id=assitant.id,
-    instructions='O nome do usuário é Adriano Soares e ele é um usuário Premium.'
-)
-
-#Aguarda a thread rodar.
-while run.status in ['queued', 'in_progress', 'cancelling']:
-    time.sleep(1)
-    run = client.beta.threads.runs.retrieve(
-        thread_id=thread.id,
-        run_id=run.id
-    )
-
-run.status
-
-#Veirifica a resposta
-if run.status == 'completed':
-    mensagens = client.beta.threads.messages.list(
-        thread_id=thread.id
-    )
-    print(mensagens)
-else:
-    print('Errro', run.status)
-
-#Print da mensagem para o humano
-print(mensagens.data[0].content[0].text.value)
 
