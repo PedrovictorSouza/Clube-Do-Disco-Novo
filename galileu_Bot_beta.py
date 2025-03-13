@@ -28,7 +28,7 @@ if os.path.isfile(caminho_arquivo):
     print("Arquivo existe!")
     print("Carregando Arquivo!")
     with open(threadID_trackRec) as f:
-        threadID_dict = threajson.load(f)
+        threadID_dict = json.load(f)
 
 else:
     print("Arquivo não encontrado.")
@@ -44,7 +44,7 @@ threadID = threadID_dict['testUser']
 message = client.beta.threads.messages.create(
     thread_id=threadID,
     role='user',
-    content='Olá, bom dia. O que você faz?' #Pergunta inicial de criação do Assistente
+    content='Olá, bom dia. Quem é você e O que você faz?' #Pergunta inicial de criação do Assistente
 )
 
 
@@ -52,14 +52,14 @@ message = client.beta.threads.messages.create(
 run = client.beta.threads.runs.create(
     thread_id=threadID,
     assistant_id=assistantID,
-    instructions='Este é o usuário de testes.'
+    #instructions='Este é o usuário de testes.' #Isso é um prompt adicional para o agente
 )
 
 #Aguarda a thread rodar.
 while run.status in ['queued', 'in_progress', 'cancelling']:
     time.sleep(1)
     run = client.beta.threads.runs.retrieve(
-        thread_id=thread.id,
+        thread_id=threadID,
         run_id=run.id
     )
 
@@ -68,9 +68,9 @@ run.status
 #Veirifica a resposta
 if run.status == 'completed':
     mensagens = client.beta.threads.messages.list(
-        thread_id=thread.id
+        thread_id=threadID
     )
-    print(mensagens)
+    #print(mensagens) #checagem da classe completa retornada pela API
 else:
     print('Errro', run.status)
 
