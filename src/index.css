@@ -1,0 +1,33 @@
+.transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  z-index: 9999;
+  transform: translateY(0);
+  transition: transform 1.5s ease-in-out;
+}
+
+.transition-overlay.slide-out {
+  transform: translateY(-100%);
+}
+
+/* Criando três blocos coloridos */
+.transition-overlay div {
+  flex: 1;
+  height: 100vh;
+  animation: slideLeft 1.5s ease-in-out forwards;
+}
+
+/* Definição das cores para um efeito mais dinâmico */
+.transition-overlay .block1 { background-color: #FF5733; }
+.transition-overlay .block2 { background-color: #C70039; }
+.transition-overlay .block3 { background-color: #900C3F; }
+
+/* Animação de entrada */
+@keyframes slideLeft {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
