@@ -7,7 +7,7 @@ import json
 _ = load_dotenv(find_dotenv())
 
 client = openai.Client()
-assistantID = 'asst_s9qtZ7lEgKZ9i4W3IajTPIv1' #ID do Assistente criado na OpenAI
+assistantID = 'asst_AOpC83OsyaZU85yPtuNfEMFu' #ID do Assistente criado na OpenAI
 
 #Depois da criação do Assistente da OpenAI API
 #Partimos para a verificação da thread do usuário

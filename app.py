@@ -13,7 +13,7 @@ CORS(app)  # Habilita CORS para todas as rotas
 
 client = openai.Client()
 
-assistantID = 'asst_s9qtZ7lEgKZ9i4W3IajTPIv1'
+assistantID = 'asst_AOpC83OsyaZU85yPtuNfEMFu' #assistant version_0.1 
 
 @app.route('/chat', methods=['POST'])
 def chat():
