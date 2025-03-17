@@ -1,0 +1,27 @@
+/* styles/TransitionScreen.css */
+
+.transition-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+}
+
+.color-layer {
+    position: absolute;
+    top: 0;
+    left: -100%; /* Inicia fora da tela à esquerda */
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #ea4a19, #f1891d, #2d97d5, #f6b5be);
+    animation: slide 1.5s forwards;
+}
+
+@keyframes slide {
+    to {
+        left: 100%; /* Move para fora da tela à direita */
+    }
+}
