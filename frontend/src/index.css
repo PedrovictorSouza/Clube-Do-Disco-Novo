@@ -1,30 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply font-karla bg-white text-black antialiased;
+  }
+}
+
+/* Animações personalizadas */
 .transition-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  z-index: 9999;
-  transform: translateY(0);
-  transition: transform 1.5s ease-in-out;
+  @apply fixed top-0 left-0 w-screen h-screen flex z-50 transform translate-y-0 transition-transform duration-1500 ease-in-out;
 }
 
 .transition-overlay.slide-out {
-  transform: translateY(-100%);
+  @apply -translate-y-full;
 }
 
 /* Criando três blocos coloridos */
 .transition-overlay div {
-  flex: 1;
-  height: 100vh;
-  animation: slideLeft 1.5s ease-in-out forwards;
+  @apply flex-1 h-screen animate-slideLeft;
 }
 
 /* Definição das cores para um efeito mais dinâmico */
-.transition-overlay .block1 { background-color: #FF5733; }
-.transition-overlay .block2 { background-color: #C70039; }
-.transition-overlay .block3 { background-color: #900C3F; }
+.transition-overlay .block1 { @apply bg-[#FF5733]; }
+.transition-overlay .block2 { @apply bg-[#C70039]; }
+.transition-overlay .block3 { @apply bg-[#900C3F]; }
 
 /* Animação de entrada */
 @keyframes slideLeft {

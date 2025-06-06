@@ -27,8 +27,7 @@ export const ChatContainer = styled.div`
   align-items: center;
   height: 100vh;
   width: 100%;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.2));
-  backdrop-filter: blur(10px);
+  background: black;
   padding: 20px;
 `;
 
@@ -39,6 +38,10 @@ export const MessagesContainer = styled.div`
   display: flex;
   width: 60%;
   flex-direction: column;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const Message = styled.div<{ isUser: boolean }>`
@@ -55,21 +58,21 @@ export const UserMessage = styled.div`
   padding: 10px;
   border-radius: 10px;
   backdrop-filter: blur(5px);
-  font-family: "Arial", sans-serif;
+  font-family: 'Karla', sans-serif;
   font-size: 16px;
-  color: black;
+  color: white;
   overflow-wrap: break-word; /* 🔹 Garante que palavras longas sejam quebradas */
   word-break: break-word; /* 🔹 Força quebra de palavras longas */
   white-space: normal;
 `;
 
 export const BotMessage = styled.div`
-  color: black;
+  color: white;
   padding: 10px;
   border-radius: 10px;
-  font-family: 'Fraunces', serif;
+  font-family: 'Karla', sans-serif;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 100;
   text-align: left;
   overflow-wrap: break-word; /* 🔹 Garante que palavras longas sejam quebradas */
   word-break: break-word; /* 🔹 Força quebra de palavras longas */
@@ -82,10 +85,13 @@ export const BotMessage = styled.div`
 export const InputContainer = styled.div`
   display: flex;
   padding: 10px;
-  backdrop-filter: blur(10px);
   border-radius: 10px;
-  color: black;
+  color: white;
   width: 60%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const InputField = styled.input`
@@ -93,12 +99,12 @@ export const InputField = styled.input`
   padding: 10px;
   border: none;
   border-radius: 5px;
-  background: transparent;
-  color: black;
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
   outline: none;
 
   &::placeholder {
-    color: rgba(0, 0, 0, 0.5);
+    color: rgba(255, 255, 255, 0.5);
   }
 `;
 
@@ -107,11 +113,10 @@ export const ChatHeader = styled.div<{ hasTyped: boolean }>`
   text-align: left;
   color: grey;
   font-size: 18px;
-  font-weight: bold;
-  color: black;
-  padding: 10px 0;
-  height: 5vh;
-  border-bottom: 1px solid grey; /* 🔹 Linha agora atravessa todo o ChatContainer */
+  font-weight: 100;
+  color: white;
+  padding: 10px 0 0 0;
+  height: auto;
   visibility: ${({ hasTyped }) => (hasTyped ? "visible" : "hidden")};
 
    @media (max-width: 768px) {    
@@ -120,11 +125,15 @@ export const ChatHeader = styled.div<{ hasTyped: boolean }>`
 `;
 
 export const MascotContainer = styled.div<{ firstAppearance: boolean }>`
-  width: 100%;
+  width: auto;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   padding: 10px 100px;
   margin-top: 100px;
+
+  @media (max-width: 768px) {
+    margin-top: 21px;
+  }
 
   ${({ firstAppearance }) =>
     firstAppearance &&
@@ -135,8 +144,8 @@ export const MascotContainer = styled.div<{ firstAppearance: boolean }>`
 `;
 
 export const SendButton = styled.button`
-  background: #005c44;
-  color: white;
+  background: rgb(255, 255, 255);
+  color: #000000;
   border: none;
   padding: 10px 15px;
   margin-left: 10px;
@@ -147,6 +156,6 @@ export const SendButton = styled.button`
   transition: background 0.3s ease;
 
   &:hover {
-    background: rgba(0, 115, 230, 0.3);
+    background: rgba(255, 255, 255, 0.8);
   }
 `;

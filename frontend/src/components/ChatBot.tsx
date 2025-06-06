@@ -12,6 +12,8 @@ import {
   InputField,
   SendButton
 } from "./styles/ChatBot.styles";
+import ChatHeaderAnimated from "./ChatHeaderAnimated";
+import ChatInputAnimated from "./ChatInputAnimated";
 
 const ChatBot: React.FC = () => {
 
@@ -127,7 +129,7 @@ const ChatBot: React.FC = () => {
   return (
     <ChatContainer>
       <ChatHeader hasTyped={hasTyped}>
-        {hasTyped ? "Quem é a polimat" : ""}
+        <ChatHeaderAnimated show={hasTyped} />
       </ChatHeader>
 
       <MascotContainer firstAppearance={false}>
@@ -155,22 +157,12 @@ const ChatBot: React.FC = () => {
         ))}
       </MessagesContainer>
 
-      <InputContainer>
-        <InputField
-          type="text"
-          value={input}
-          placeholder="Digite sua mensagem..."
-          onChange={(e) => {
-            setInput(e.target.value);
-            if (e.target.value.length > 0) setHasTyped(true);
-          }}
-          onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
-        />
-        <SendButton onClick={handleSendMessage}>Enviar</SendButton>
-        {/* <button onClick={handleCloseChat}>Fechar Chat</button> */}
-
-
-      </InputContainer>
+      <ChatInputAnimated
+        input={input}
+        setInput={setInput}
+        onSend={handleSendMessage}
+        setHasTyped={setHasTyped}
+      />
     </ChatContainer>
   );
 };

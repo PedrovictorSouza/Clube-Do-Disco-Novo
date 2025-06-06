@@ -1,6 +1,6 @@
 // src/App.tsx
 import React from "react";
-import Home from "./components/Home";
+import Home from "./modules/Home";
 import { GlobalStyles } from "./styles/GlobalStyles"; 
 
 const App: React.FC = () => {

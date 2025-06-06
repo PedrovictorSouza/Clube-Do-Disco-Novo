@@ -1,0 +1,159 @@
+.main {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.background {
+    background: lightgrey;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.circle {
+    position: absolute;
+    border: 1px solid grey;
+    border-radius: 50%;
+    animation: expand 20s linear infinite;
+}
+
+.transitionCircle {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: red;
+    border-radius: 50%;
+    width: 0;
+    height: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.transitionCircle.active {
+    animation: transitionExpand 1.5s ease-in-out forwards;
+}
+
+@keyframes transitionExpand {
+    0% {
+        width: 0;
+        height: 0;
+    }
+    100% {
+        width: 3000px;
+        height: 3000px;
+    }
+}
+
+@keyframes expand {
+    0% {
+        width: 0;
+        height: 0;
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        width: 2000px;
+        height: 2000px;
+        opacity: 0;
+    }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 72vh;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.animate-fadeIn {
+    align-self: center;
+}
+
+.button {
+    background: transparent;
+    border-radius: 100px;
+    height: 140px;
+    width: 80px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+    color: #000000;
+    transition: all 300ms ease-in-out;
+    border: 2px solid black;
+}
+
+.button:hover {
+    background: white;
+    color: black;
+}
+
+.button:active {
+    background: #000;
+    color: #fff;
+}
+
+.fadeOut {
+    animation: fadeOutBtn 0.8s forwards;
+}
+
+@keyframes fadeOutBtn {
+    0% {
+        opacity: 1;
+        background: #000;
+        color: #fff;
+    }
+    100% {
+        opacity: 0;
+        background: #000;
+        color: #fff;
+    }
+}
+
+.secondButton {
+    background: transparent;
+    border-radius: 100px;
+    width: 80px;
+    height: 80px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 100;
+    font-size: 11pt;
+    letter-spacing: 0.025em;
+    color: #000000;
+    transition: all 300ms ease-in-out;
+    border: 2px solid black;
+}
+
+.secondButton:hover {
+    background: white;
+    color: black;
+}
+
+.title {
+    font-size: 16pt;
+    font-weight: 100;
+} 
