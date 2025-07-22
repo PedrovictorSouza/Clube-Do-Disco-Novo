@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const overlayText =
-  "Relacionamentos, arte, contemplação. O trabalho passa a fluir naturalmente, sem consumir a vida, liberando espaço para a experiência humana plena.";
+  "Ouvir é remixar por dentro. Em cada sinapse, em novas conexões, novas camadas de som. Não é o ouvido que escuta, é a mente que reinterpreta o mundo.";
 
 const ScrollRevealOverlay: React.FC = () => {
   const [height, setHeight] = useState(0);
@@ -44,7 +44,8 @@ const ScrollRevealOverlay: React.FC = () => {
           transition: "opacity 0.3s",
           paddingLeft: 20,
           paddingBottom: 40,
-          fontFamily: "'Karla', sans-serif",
+          fontFamily: "'Liquido Regular', sans-serif",
+          letterSpacing: "2px",
           // Máscara para revelar o texto de baixo para cima
           WebkitMaskImage: `linear-gradient(to top, black ${height}%, transparent 0%)`,
           maskImage: `linear-gradient(to top, black ${height}%, transparent 0%)`,
@@ -56,4 +57,4 @@ const ScrollRevealOverlay: React.FC = () => {
   );
 };
 
-export default ScrollRevealOverlay; 
+export default ScrollRevealOverlay;

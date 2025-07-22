@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
+import ChatBotShaderStars from "./ChatBotShaderStars";
+import ChatBotShaderWave from "./ChatBotShaderWave";
 import axios from "axios";
 import {
   ChatContainer,
   ChatHeader,
-  MascotContainer,
   MessagesContainer,
   Message,
   UserMessage,
@@ -18,7 +19,7 @@ import ChatInputAnimated from "./ChatInputAnimated";
 const ChatBot: React.FC = () => {
 
   const [messages, setMessages] = useState<{ text: string; sender: "user" | "bot" }[]>([
-    { text: "Olá! me chamo galileu, como posso te ajudar?", sender: "bot" } // 🔹 O mascote já começa falando
+    { text: "As várias frequencias não nomeadas. Ja parou para pensar que seu disco favorito pode ter camadas ainda não acessadas e ser ainda mais incrível? Não é necessário LSD para atingir essa lissergia, mas atenção as nuances, as entrelinhas e os semitons. Acessar isso, conectando-se com um coletivo que, por uma janela de momento, compartilha-rá da mesma frequencia. Troca de figurinhas, quem sabe você traz algo incrível a mesa? estamos de braços abertos, vem ouvir um som.", sender: "bot" } // 🔹 O mascote já começa falando
   ]);
   const [input, setInput] = useState("");
   const [hasTyped, setHasTyped] = useState(false);
@@ -119,23 +120,44 @@ const ChatBot: React.FC = () => {
   // };
   
 
-  const getMascotImage = () => {
-    if (mascotFrame === 1) return "/assets/mascot-t1.svg";
-    if (mascotFrame === 2) return "/assets/mascot-t2.svg";
-    if (mascotFrame === 3) return "/assets/mascot-t1.svg";
-    return "/assets/mascot.svg";
-  };
+  // const getMascotImage = () => {
+  //   if (mascotFrame === 1) return "/assets/mascot-t1.svg";
+  //   if (mascotFrame === 2) return "/assets/mascot-t2.svg";
+  //   if (mascotFrame === 3) return "/assets/mascot-t1.svg";
+  //   return "/assets/mascot.svg";
+  // };
+
+  // Shader animation loop and dynamic sizing
+  const [shaderFrame, setShaderFrame] = useState(0);
+  const [shaderSize, setShaderSize] = useState({ width: 420, height: 420 });
+  const containerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShaderFrame((f) => f + 1);
+      if (containerRef.current) {
+        setShaderSize({
+          width: containerRef.current.offsetWidth,
+          height: containerRef.current.offsetHeight,
+        });
+      }
+    }, 600); // update every 600ms
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <ChatContainer>
+    <ChatContainer ref={containerRef} style={{ position: "relative", overflow: "hidden" }}>
+      {/* Wave Canvas - above stars, covers entire area */}
+      <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 1, pointerEvents: "none" }}>
+        <ChatBotShaderWave width={shaderSize.width} height={shaderSize.height} color="#ffe600" amplitude={32} frequency={2} speed={0.02} />
+      </div>
+      {/* Stars Canvas - always behind, covers entire area */}
+      <div style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", zIndex: 0, pointerEvents: "none" }}>
+        <ChatBotShaderStars width={shaderSize.width} height={shaderSize.height} numStars={120} />
+      </div>
+
       <ChatHeader hasTyped={hasTyped}>
         <ChatHeaderAnimated show={hasTyped} />
       </ChatHeader>
-
-      <MascotContainer firstAppearance={false}>
-        <img src={getMascotImage()} alt="Mascote" width="100" height="100" />
-      </MascotContainer>
-
 
       <MessagesContainer>
         {messages.map((msg, index) => (
@@ -144,14 +166,14 @@ const ChatBot: React.FC = () => {
               <UserMessage>{msg.text}</UserMessage>
             ) : (
               <BotMessage
-  style={{
-    minWidth: messageWidths[index] ? `${messageWidths[index]}px` : "auto",
-    opacity: msg.text.length > 0 ? 1 : 0, // 🔹 Esconde até a animação começar
-  }}
-  ref={index === messages.length - 1 ? measureRef : null}
->
-  {msg.text}
-</BotMessage>
+                style={{
+                  minWidth: messageWidths[index] ? `${messageWidths[index]}px` : "auto",
+                  opacity: msg.text.length > 0 ? 1 : 0,
+                }}
+                ref={index === messages.length - 1 ? measureRef : null}
+              >
+                {msg.text}
+              </BotMessage>
             )}
           </Message>
         ))}

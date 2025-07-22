@@ -59,6 +59,17 @@ const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({
       return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
+    React.useEffect(() => {
+      const next = () => setCarouselIndex((i) => (i + 1) % carouselItems.length);
+      const prev = () => setCarouselIndex((i) => (i - 1 + carouselItems.length) % carouselItems.length);
+      window.addEventListener('carousel-next', next);
+      window.addEventListener('carousel-prev', prev);
+      return () => {
+        window.removeEventListener('carousel-next', next);
+        window.removeEventListener('carousel-prev', prev);
+      };
+    }, [carouselItems.length]);
+
     return (
         <main className={styles.main}>
             <div className={styles.baseBg} />
@@ -94,36 +105,36 @@ const HomeHeroSection: React.FC<HomeHeroSectionProps> = ({
                   </div>
                 </div>
                 <div className={styles['animate-fadeIn']} style={{ animationDelay: '300ms', alignSelf: 'center', marginBottom: 0 }}>
-                    {!hideButton && (
-                        <button
-                            onClick={onStartCourse}
-                            className={styles.button + ' ' + (hideButton ? styles.fadeOut : '')}
-                            style={{
-                                minWidth: 256,
-                                maxWidth: 320,
-                                width: 'auto',
-                                padding: '6px 26px',
-                                background: 'rgb(255, 225, 0)',
-                                border: '2px solid #222',
-                                borderRadius: '32px',
-                                fontFamily: 'Karla, Sour Gummy, sans-serif',
-                                fontSize: 22.4,
-                                fontWeight: 700,
-                                color: '#222',
-                                letterSpacing: 2,
-                                textTransform: 'lowercase',
-                                transition: 'all 0.2s',
-                                outline: 'none',
-                                cursor: 'pointer',
-                                whiteSpace: 'nowrap',
-                                marginTop: 0,
-                                marginBottom: 0,
-                                position: 'relative',
-                            }}
-                        >
-                            que clube é esse?
-                        </button>
-                    )}
+                  {!hideButton && (
+                    <button
+                      onClick={onStartCourse}
+                      className={styles.button + ' ' + (hideButton ? styles.fadeOut : '')}
+                      style={{
+                        minWidth: 256,
+                        maxWidth: 320,
+                        width: 'auto',
+                        padding: '6px 26px',
+                        background: 'rgb(255, 225, 0)',
+                        border: '2px solid #222',
+                        borderRadius: '32px',
+                        fontFamily: 'Karla, Sour Gummy, sans-serif',
+                        fontSize: 22.4,
+                        fontWeight: 700,
+                        color: '#222',
+                        letterSpacing: 2,
+                        textTransform: 'lowercase',
+                        transition: 'all 0.2s',
+                        outline: 'none',
+                        cursor: 'pointer',
+                        whiteSpace: 'nowrap',
+                        marginTop: 0,
+                        marginBottom: 0,
+                        position: 'relative',
+                      }}
+                    >
+                      que clube é esse?
+                    </button>
+                  )}
                 </div>
             </div>
             {Array.from({ length: 10 }).map((_, i) => (

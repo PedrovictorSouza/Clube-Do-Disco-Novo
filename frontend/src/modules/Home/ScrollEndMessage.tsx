@@ -32,7 +32,7 @@ const ScrollEndMessage: React.FC = () => {
         left: 0,
         width: "100vw",
         height: "50vh",
-        background: "lightgrey",
+        background: "yellow",
         color: "#111",
         fontSize: "1.5rem",
         textAlign: "center",

@@ -24,34 +24,46 @@ const RecordInfoBlock: React.FC<RecordInfoBlockProps> = ({ carouselIndex, isMobi
       <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginTop: 18 }}>
         {/* Botões de navegação só aparecem no desktop */}
         {!isMobile && (
-          <>
+          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', alignItems: 'center' }}>
             <button
               className="carousel-arrow"
-              style={{ background: '#fff', border: '2px solid #f1891d', borderRadius: 8, padding: '6px 18px', fontWeight: 700, color: '#f1891d', cursor: 'pointer' }}
-            >&lt;</button>
+              style={{ background: '#000', border: '2px solid #f1891d', borderRadius: 8, padding: '6px 18px', fontWeight: 700, color: '#f1891d', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              onClick={() => window.dispatchEvent(new CustomEvent('carousel-next'))}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="17,6 9,12 17,18" fill="#f1891d" />
+              </svg>
+            </button>
             <button
               className="carousel-arrow"
-              style={{ background: '#fff', border: '2px solid #f1891d', borderRadius: 8, padding: '6px 18px', fontWeight: 700, color: '#f1891d', cursor: 'pointer' }}
-            >&gt;</button>
-          </>
+              style={{ background: '#000', border: '2px solid #f1891d', borderRadius: 8, padding: '6px 18px', fontWeight: 700, color: '#f1891d', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              onClick={() => window.dispatchEvent(new CustomEvent('carousel-prev'))}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="7,6 15,12 7,18" fill="#f1891d" />
+              </svg>
+            </button>
+          </div>
         )}
         {/* Pontinhos do carrossel para mobile */}
-        <div style={{ display: 'flex', gap: 8, alignItems: 'center', justifyContent: 'center', width: '100%' }}>
-          {carouselItems.map((_, idx) => (
-            <span
-              key={idx}
-              style={{
-                width: 10,
-                height: 10,
-                borderRadius: '50%',
-                background: idx === carouselIndex ? '#f1891d' : '#fff',
-                opacity: idx === carouselIndex ? 1 : 0.5,
-                transition: 'background 0.2s',
-                display: 'inline-block',
-              }}
-            />
-          ))}
-        </div>
+        {isMobile && (
+          <div style={{ display: 'flex', gap: 8, alignItems: 'center', justifyContent: 'center', width: '100%' }}>
+            {carouselItems.map((_, idx) => (
+              <span
+                key={idx}
+                style={{
+                  width: 10,
+                  height: 10,
+                  borderRadius: '50%',
+                  background: idx === carouselIndex ? '#f1891d' : '#fff',
+                  opacity: idx === carouselIndex ? 1 : 0.5,
+                  transition: 'background 0.2s',
+                  display: 'inline-block',
+                }}
+              />
+            ))}
+          </div>
+        )}
       </div>
       {/* Local do evento */}
       <div style={{ marginTop: 24, textAlign: 'center', fontFamily: 'Liquido Regular, sans-serif', fontSize: 18, color: '#fff', fontWeight: 500, letterSpacing: 1 }}>

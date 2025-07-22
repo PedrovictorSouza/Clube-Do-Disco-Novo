@@ -1,0 +1,20 @@
+.titleBlock {
+  /* Adicione estilos de layout conforme necessário */
+}
+.liquidoRegular {
+  font-family: 'Liquido Regular', sans-serif;
+}
+.titleRegular {
+  font-size: 5rem;
+  font-weight: 400;
+  margin: 0;
+}
+.liquidoFluid {
+  font-family: 'Liquido Fluid', sans-serif;
+}
+.titleFluid {
+  font-size: 12rem;
+  font-weight: 400;
+  margin: 0;
+  line-height: 0.8;
+}
