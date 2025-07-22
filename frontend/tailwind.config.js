@@ -3,7 +3,7 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  ], // Clube do Disco
   theme: {
     extend: {
       colors: {
@@ -13,6 +13,8 @@ export default {
         'highlight': '#f6b5be',
       },
       fontFamily: {
+        'dynapuff': ['DynaPuff', 'cursive'],
+        'sourgummy': ['Sour Gummy', 'cursive'],
         'karla': ['Karla', 'sans-serif'],
       },
       animation: {

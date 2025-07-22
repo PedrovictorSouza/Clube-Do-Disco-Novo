@@ -1,0 +1,23 @@
+
+@font-face {
+  font-family: 'Liquido Regular';
+  src: url('../../fonts/Liquido-Regular.woff2') format('woff2'),
+       url('../../fonts/Liquido-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Liquido Fluid';
+  src: url('../../fonts/Liquido-Fluid.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.liquidoRegular {
+  font-family: 'Liquido Regular', sans-serif !important;
+}
+
+.liquidoFluid {
+  font-family: 'Liquido Fluid', sans-serif !important;
+}

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import TransitionScreen from "../../components/TransitionScreen";
 import ScrollRevealContent from "./ScrollRevealContent";
 import ScrollEndMessage from "./ScrollEndMessage";
+import LoadingView from "./Views/LoadingView";
+import StartView from "./Views/StartView";
 import HomeHeroSection from "./HomeHeroSection";
+
 
 const Home: React.FC = () => {
   const [startTransition, setStartTransition] = useState(false);
@@ -26,13 +28,13 @@ const Home: React.FC = () => {
   return (
     <>
       {!showTransitionScreen ? (
-        <HomeHeroSection
+        <StartView
           onStartCourse={handleStartCourse}
           hideButton={hideButton}
           startTransition={startTransition}
         />
       ) : (
-        <TransitionScreen />
+        <LoadingView />
       )}
       {/* Agora o ScrollRevealContent fica fora do main, logo abaixo da Home */}
       {!showTransitionScreen && <ScrollRevealContent />}

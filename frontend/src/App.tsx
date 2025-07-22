@@ -1,5 +1,5 @@
 // src/App.tsx
-import React from "react";
+import React from "react"; // Updated to remove old project references
 import Home from "./modules/Home";
 import { GlobalStyles } from "./styles/GlobalStyles"; 
 

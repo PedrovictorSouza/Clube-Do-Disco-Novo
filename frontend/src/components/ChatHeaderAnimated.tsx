@@ -4,7 +4,7 @@ interface ChatHeaderAnimatedProps {
   show: boolean;
 }
 
-const HEADER_TEXT = "Quem é a polimat";
+const HEADER_TEXT = "Quem é o clube do disco";
 const HEADER_ANIMATION_DURATION = 3000; // ms
 const TOTAL_POINTS = 55; // ajuste conforme necessário para o comprimento desejado
 const POINTS_ANIMATION_DURATION = 1500; // ms
@@ -63,8 +63,7 @@ const ChatHeaderAnimated: React.FC<ChatHeaderAnimatedProps> = ({ show }) => {
       </span>
       <div className="w-full md:w-3/4 text-left text-gray-400 select-none leading-none mt-1 tracking-widest text-base whitespace-nowrap">
         {Array.from({ length: visiblePoints })
-          .map((_, i) => (i < visiblePoints - 1 ? ". " : "."))
-          .join("")}
+          .map((_, i) => (i < visiblePoints - 1 ? ". " : "."))}
       </div>
     </>
   );

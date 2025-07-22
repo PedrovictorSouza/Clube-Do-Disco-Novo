@@ -74,6 +74,6 @@ if run.status == 'completed':
 else:
     print('Errro', run.status)
 
-#Print da mensagem para o humano
+
 print(mensagens.data[0].content[0].text.value)
 
