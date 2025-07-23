@@ -1,0 +1,96 @@
+.container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(40vh); /* Posição inicial ainda mais baixa */
+  transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+  position: relative;
+  opacity: 0; /* Inicialmente invisível */
+  pointer-events: none; /* Não interagível inicialmente */
+  overflow: hidden; /* Para conter a animação */
+}
+
+.container.triggered {
+  transform: translateY(0); /* Move para posição normal quando triggerado */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10000; /* Maior que o VinylSection (9999) */
+  opacity: 1; /* Torna visível quando triggerado */
+  pointer-events: auto; /* Torna interagível quando triggerado */
+}
+
+.contentBlock {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  position: relative;
+  z-index: 2; /* Fica acima do background animado */
+}
+
+.titleSection {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100vw; /* Largura total da viewport */
+  height: 100vh; /* Altura total da viewport */
+  z-index: 1; /* Fica atrás dos records */
+  overflow: hidden;
+  transform: translateX(-50%); /* Centraliza na tela */
+}
+
+.programTitle {
+  font-family: 'Liquido Regular', sans-serif;
+  font-size: clamp(8rem, 15vw, 12rem);
+  font-weight: 900;
+  color: rgba(241, 137, 29, 1); /* 100% de opacidade */
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  margin: 0;
+  white-space: nowrap;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%) rotate(-30deg); /* Inclinação de 30 graus */
+  animation: marquee 20s linear infinite;
+}
+
+.programTitle:nth-child(2) {
+  animation-delay: -10s; /* Segunda cópia começa na metade */
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateY(-50%) rotate(-30deg) translateX(100%);
+  }
+  100% {
+    transform: translateY(-50%) rotate(-30deg) translateX(-100%);
+  }
+}
+
+
+.infoBlock {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.buttonWrapper {
+  margin-top: 32px;
+}
+
+.button {
+  background: yellow;
+  padding: 12px 24px;
+  border-radius: 32px;
+  border: 2px solid black;
+  font-weight: bold;
+  text-transform: lowercase;
+  cursor: pointer;
+}

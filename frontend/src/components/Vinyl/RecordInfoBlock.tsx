@@ -1,5 +1,5 @@
 import React from "react";
-import { carouselItems } from "../modules/carouselItems";
+import { carouselItems } from "../../modules/carouselItems";
 
 interface RecordInfoBlockProps {
   carouselIndex: number;
@@ -27,7 +27,7 @@ const RecordInfoBlock: React.FC<RecordInfoBlockProps> = ({ carouselIndex, isMobi
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', alignItems: 'center' }}>
             <button
               className="carousel-arrow"
-              style={{ background: '#000', border: '2px solid #f1891d', borderRadius: 8, padding: '6px 18px', fontWeight: 700, color: '#f1891d', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              style={{ background: 'none !important', border: '2px solid #f1891d', borderRadius: 8, padding: '6px 18px', fontWeight: 700, color: '#f1891d', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               onClick={() => window.dispatchEvent(new CustomEvent('carousel-next'))}
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,7 +36,7 @@ const RecordInfoBlock: React.FC<RecordInfoBlockProps> = ({ carouselIndex, isMobi
             </button>
             <button
               className="carousel-arrow"
-              style={{ background: '#000', border: '2px solid #f1891d', borderRadius: 8, padding: '6px 18px', fontWeight: 700, color: '#f1891d', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              style={{ background: 'none !important', border: '2px solid #f1891d', borderRadius: 8, padding: '6px 18px', fontWeight: 700, color: '#f1891d', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               onClick={() => window.dispatchEvent(new CustomEvent('carousel-prev'))}
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -65,7 +65,10 @@ const RecordInfoBlock: React.FC<RecordInfoBlockProps> = ({ carouselIndex, isMobi
           </div>
         )}
       </div>
-      
+      {/* Local do evento */}
+      <div style={{ marginTop: 24, textAlign: 'center', fontFamily: 'Liquido Regular, sans-serif', fontSize: 18, color: '#fff', fontWeight: 500, letterSpacing: 1 }}>
+        <strong>Local:</strong> Rua secreta muito loca - Centro / SP
+      </div>
     </>
   );
 };

@@ -1,0 +1,36 @@
+.recordShelf {
+  position: relative;
+  width: 600px;
+  min-height: 400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.record {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 350px;
+  height: 350px;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s, z-index 0.3s;
+  z-index: 1;
+}
+
+.main {
+  z-index: 3;
+}
+
+.middle {
+  z-index: 2;
+}
+
+.back {
+  z-index: 1;
+}

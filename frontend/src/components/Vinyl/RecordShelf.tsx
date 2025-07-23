@@ -1,5 +1,5 @@
 import React from "react";
-import { carouselItems } from "../modules/carouselItems";
+import { carouselItems } from "../../modules/carouselItems";
 
 interface RecordShelfProps {
   carouselIndex: number;

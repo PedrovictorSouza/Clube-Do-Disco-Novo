@@ -9,9 +9,30 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 0;
+  }
+
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+    scroll-behavior: smooth;
+  }
+
   body {
     font-family: 'DynaPuff', 'Sour Gummy', 'Karla', sans-serif; /* Fonte principal, secundária e fallback */
     background-color: white;
     color: black;
+    position: relative;
+    scroll-behavior: smooth;
+  }
+
+  #root {
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+    scroll-behavior: smooth;
   }
 `;
