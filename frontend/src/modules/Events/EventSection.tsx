@@ -19,34 +19,77 @@ const EventSection: React.FC = () => {
   // Contexto de visibilidade
   const { isEventSectionVisible, setEventSectionVisible } = useVisibility();
 
+  // Estado para memorizar a posição onde apareceu pela primeira vez
+  const [firstAppearancePosition, setFirstAppearancePosition] = useState<number | null>(null);
+  
+  // Estado para controlar se deve ficar oculto por scroll para baixo
+  const [isHiddenByScrollDown, setIsHiddenByScrollDown] = useState(false);
+
   // Detectar quando o scroll Y chegar no ponto de aparecer (diferente para mobile e desktop)
   const triggerPoint = isMobile ? 150 : 312;
   const isAtTriggerPoint = useScrollTrigger(triggerPoint, 'pixels', 10);
-  
-  // Detectar quando o scroll Y voltar para o ponto de esconder (diferente para mobile e desktop)
-  const hidePoint = isMobile ? 140 : 300;
-  const isAtHidePoint = useScrollTrigger(hidePoint, 'pixels', 10);
   
   // Estado para manter o elemento visível uma vez que apareça
   const [hasBeenTriggered, setHasBeenTriggered] = useState(false);
   
   // Debug: log quando o trigger for ativado
   useEffect(() => {
-    if (isAtTriggerPoint && !hasBeenTriggered) {
+    if (isAtTriggerPoint && !hasBeenTriggered && !isHiddenByScrollDown) {
       console.log('EventSection triggered!');
+      console.log('Current scroll Y:', window.scrollY);
       setHasBeenTriggered(true);
       setEventSectionVisible(true);
+      // Memorizar a posição onde apareceu pela primeira vez
+      setFirstAppearancePosition(window.scrollY);
     }
-  }, [isAtTriggerPoint, hasBeenTriggered, setEventSectionVisible]);
+  }, [isAtTriggerPoint, hasBeenTriggered, setEventSectionVisible, isHiddenByScrollDown]);
 
-  // Lógica para esconder quando voltar para cima
+  // Lógica para esconder apenas se subir além da posição memorizada
   useEffect(() => {
-    if (isAtHidePoint && hasBeenTriggered) {
-      console.log('EventSection hiding!');
-      setEventSectionVisible(false);
-      setHasBeenTriggered(false);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+      const scrollYvh = currentScrollY / viewportHeight;
+      
+      // Se chegou em Y/vh: 100, oculta o EventSection
+      if (scrollYvh >= 1.0 && hasBeenTriggered && isEventSectionVisible) {
+        console.log('EventSection hiding - reached Y/vh: 100!');
+        setEventSectionVisible(false);
+        setIsHiddenByScrollDown(true);
+      }
+      
+      // Se subiu além da posição memorizada, oculta e reseta
+      if (hasBeenTriggered && firstAppearancePosition !== null && !isHiddenByScrollDown) {
+        const hideThreshold = firstAppearancePosition - 20; // 20px de tolerância
+        
+        console.log('Scroll check:', {
+          currentScrollY,
+          firstAppearancePosition,
+          hideThreshold,
+          shouldHide: currentScrollY < hideThreshold
+        });
+        
+        if (currentScrollY < hideThreshold) {
+          console.log('EventSection hiding - scrolled above first appearance position!');
+          setEventSectionVisible(false);
+          setHasBeenTriggered(false);
+          setFirstAppearancePosition(null);
+        }
+      }
+      
+      // Se voltou para a posição de trigger e estava oculto por scroll para baixo, permite reaparecer
+      if (isHiddenByScrollDown && currentScrollY <= triggerPoint) {
+        console.log('EventSection can reappear - back to trigger position!');
+        setIsHiddenByScrollDown(false);
+      }
+    };
+
+    if (hasBeenTriggered || isHiddenByScrollDown) {
+      console.log('Adding scroll listener. First appearance position:', firstAppearancePosition);
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
     }
-  }, [isAtHidePoint, hasBeenTriggered, setEventSectionVisible]);
+  }, [hasBeenTriggered, firstAppearancePosition, setEventSectionVisible, isHiddenByScrollDown, isEventSectionVisible, triggerPoint]);
 
   const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     setTouchStartX(e.targetTouches[0].clientX);
@@ -84,8 +127,11 @@ const EventSection: React.FC = () => {
       <div className={`${styles.container} ${isEventSectionVisible ? styles.triggered : ''}`}>
         <div className={styles.contentBlock}>
           <div className={styles.titleSection}>
-            <h2 className={styles.programTitle}>PROGRAMAÇÃO</h2>
-            <h2 className={styles.programTitle}>PROGRAMAÇÃO</h2>
+            <div className={styles.marqueeContainer}>
+              <h2 className={styles.programTitle}>PROGRAMAÇÃO</h2>
+              <h2 className={styles.programTitle}>PROGRAMAÇÃO</h2>
+              <h2 className={styles.programTitle}>PROGRAMAÇÃO</h2>
+            </div>
           </div>
           <div
             className={styles.carouselWrapper}
@@ -102,7 +148,11 @@ const EventSection: React.FC = () => {
 
           </div>
           <div className={styles.infoBlock}>
-            <RecordInfoBlock carouselIndex={carouselIndex} isMobile={isMobile} />
+            <RecordInfoBlock 
+              carouselIndex={carouselIndex} 
+              isMobile={isMobile} 
+              setCarouselIndex={setCarouselIndex}
+            />
           </div>
         </div>
 

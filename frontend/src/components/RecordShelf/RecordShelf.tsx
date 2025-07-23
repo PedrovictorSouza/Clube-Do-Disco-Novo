@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./RecordShelf.module.css";
 import { CarouselItem, RecordShelfProps } from "./types";
+import CarouselNavigation from "../CarouselNavigation/CarouselNavigation";
 
 const RecordShelf: React.FC<RecordShelfProps> = ({ carouselIndex, items, setCarouselIndex }) => {
   const handleNext = () => {
@@ -47,50 +48,14 @@ const RecordShelf: React.FC<RecordShelfProps> = ({ carouselIndex, items, setCaro
   return (
     <div className={styles.recordShelf}>
       {visibleItems}
-
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 12, marginTop: '40px' }}>
-        <button
-          onClick={handlePrev}
-          className="carousel-arrow"
-          style={{
-            background: '#000',
-            border: '2px solid #f1891d',
-            borderRadius: 8,
-            padding: '6px 18px',
-            fontWeight: 700,
-            color: '#f1891d',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <polygon points="7,6 15,12 7,18" fill="#f1891d" />
-          </svg>
-        </button>
-
-        <button
-          onClick={handleNext}
-          className="carousel-arrow"
-          style={{
-            background: '#000',
-            border: '2px solid #f1891d',
-            borderRadius: 8,
-            padding: '6px 18px',
-            fontWeight: 700,
-            color: '#f1891d',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <polygon points="17,6 9,12 17,18" fill="#f1891d" />
-          </svg>
-        </button>
-      </div>
+      
+      <CarouselNavigation
+        carouselIndex={carouselIndex}
+        totalItems={items.length}
+        onNext={handleNext}
+        onPrev={handlePrev}
+        isMobile={false}
+      />
     </div>
   );
 };

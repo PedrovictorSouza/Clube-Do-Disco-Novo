@@ -1,13 +1,24 @@
 import React from "react";
 import { carouselItems } from "../modules/carouselItems";
+import CarouselNavigation from "./CarouselNavigation/CarouselNavigation";
 
 interface RecordInfoBlockProps {
   carouselIndex: number;
   isMobile: boolean;
+  setCarouselIndex: (index: number) => void;
 }
 
-const RecordInfoBlock: React.FC<RecordInfoBlockProps> = ({ carouselIndex, isMobile }) => {
+const RecordInfoBlock: React.FC<RecordInfoBlockProps> = ({ carouselIndex, isMobile, setCarouselIndex }) => {
   const currentItem = carouselItems[carouselIndex];
+  
+  const handleNext = () => {
+    setCarouselIndex((carouselIndex + 1) % carouselItems.length);
+  };
+
+  const handlePrev = () => {
+    setCarouselIndex((carouselIndex - 1 + carouselItems.length) % carouselItems.length);
+  };
+
   return (
     <>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', maxWidth: 320, margin: '0 auto' }}>
@@ -21,32 +32,21 @@ const RecordInfoBlock: React.FC<RecordInfoBlockProps> = ({ carouselIndex, isMobi
           {currentItem.hour}
         </div>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginTop: 18 }}>
-        {/* Botões de navegação só aparecem no desktop */}
-        {!isMobile && (
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', alignItems: 'center' }}>
-            <button
-              className="carousel-arrow"
-              style={{ background: '#000', border: '2px solid #f1891d', borderRadius: 8, padding: '6px 18px', fontWeight: 700, color: '#f1891d', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-              onClick={() => window.dispatchEvent(new CustomEvent('carousel-next'))}
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polygon points="17,6 9,12 17,18" fill="#f1891d" />
-              </svg>
-            </button>
-            <button
-              className="carousel-arrow"
-              style={{ background: '#000', border: '2px solid #f1891d', borderRadius: 8, padding: '6px 18px', fontWeight: 700, color: '#f1891d', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-              onClick={() => window.dispatchEvent(new CustomEvent('carousel-prev'))}
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <polygon points="7,6 15,12 7,18" fill="#f1891d" />
-              </svg>
-            </button>
-          </div>
-        )}
-        {/* Pontinhos do carrossel para mobile */}
-        {isMobile && (
+      
+      {/* Botões de navegação só aparecem no desktop */}
+      {!isMobile && (
+        <CarouselNavigation
+          carouselIndex={carouselIndex}
+          totalItems={carouselItems.length}
+          onNext={handleNext}
+          onPrev={handlePrev}
+          isMobile={false}
+        />
+      )}
+      
+      {/* Pontinhos do carrossel para mobile */}
+      {isMobile && (
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginTop: 18 }}>
           <div style={{ display: 'flex', gap: 8, alignItems: 'center', justifyContent: 'center', width: '100%' }}>
             {carouselItems.map((_, idx) => (
               <span
@@ -63,9 +63,8 @@ const RecordInfoBlock: React.FC<RecordInfoBlockProps> = ({ carouselIndex, isMobi
               />
             ))}
           </div>
-        )}
-      </div>
-      
+        </div>
+      )}
     </>
   );
 };
