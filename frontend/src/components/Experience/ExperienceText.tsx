@@ -15,7 +15,7 @@ const ExperienceText: React.FC<ExperienceTextProps> = ({ children }) => (
       transition: 'opacity 0.3s',
       paddingLeft: 20,
       paddingBottom: 40,
-      fontFamily: 'Liquido Regular, sans-serif',
+      fontFamily: 'system-ui, -apple-system, sans-serif',
       maskImage: 'linear-gradient(to top, black 100%, transparent 0%)',
       WebkitMaskImage: 'linear-gradient(to top, black 100%, transparent 0%)',
     }}

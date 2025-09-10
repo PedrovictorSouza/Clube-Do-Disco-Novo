@@ -3,13 +3,13 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-  ], // Clube do Disco
+  ],
   theme: {
     extend: {
       colors: {
         'primary': '#ea4a19',
         'secondary': '#f1891d',
-        'accent': '#2d97d5',
+        'accent': '#000000',
         'highlight': '#f6b5be',
       },
       fontFamily: {

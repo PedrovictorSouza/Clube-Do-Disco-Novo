@@ -1,37 +1,30 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Home from "./modules/Home";
-import EventSection from "./modules/Events/EventSection";
-import VinylSection from "./components/VinylSection";
-import DebugScroll from "./components/DebugScroll";
+import Layout from './components/Layout/Layout';
+import ProgressBar from './components/ProgressBar';
+import VinylLoadingScreen from './components/VinylLoadingScreen/VinylLoadingScreen';
 import { usePreventHorizontalScroll } from "./hooks/usePreventHorizontalScroll";
 import { useScrollToTop } from "./hooks/useScrollToTop";
+import { useProgressBar } from "./hooks/useProgressBar";
 import { VisibilityProvider } from "./contexts/VisibilityContext";
-import { GlobalStyles } from "./styles/GlobalStyles";
-import { carouselItems } from "./modules/carouselItems"; // ajuste se o caminho for outro
+import { initScrollObserver} from "./hooks/scroll/scrollObserver.ts";
+import "./styles/ContactSectionFix.css";
 
 const App: React.FC = () => {
-  const [carouselIndex, setCarouselIndex] = useState(0);
-  const [hideButton, setHideButton] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const [touchStartX, setTouchStartX] = useState<number | null>(null);
-  const [touchEndX, setTouchEndX] = useState<number | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Prevenir scroll horizontal
   usePreventHorizontalScroll();
   
-  // Garantir que a página sempre comece no topo
   useScrollToTop();
+  
+  const { progress } = useProgressBar();
 
   useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  useEffect(() => {
-    const next = () => setCarouselIndex(i => (i + 1) % carouselItems.length);
-    const prev = () => setCarouselIndex(i => (i - 1 + carouselItems.length) % carouselItems.length);
+    initScrollObserver();
+    const next = () => {
+    };
+    const prev = () => {
+    };
     window.addEventListener("carousel-next", next);
     window.addEventListener("carousel-prev", prev);
     return () => {
@@ -40,38 +33,21 @@ const App: React.FC = () => {
     };
   }, []);
 
-  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    setTouchStartX(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    setTouchEndX(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (touchStartX !== null && touchEndX !== null) {
-      const delta = touchStartX - touchEndX;
-      if (delta > 50) setCarouselIndex((carouselIndex + 1) % carouselItems.length);
-      else if (delta < -50) setCarouselIndex((carouselIndex - 1 + carouselItems.length) % carouselItems.length);
-    }
-    setTouchStartX(null);
-    setTouchEndX(null);
-  };
-
-  const onStartCourse = () => {
-    setHideButton(true);
-    // aqui você pode acionar uma transição ou navegação se quiser
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
   };
 
   return (
-    <VisibilityProvider>
-      <div>
-        <GlobalStyles />
-        <DebugScroll />
-        <Home />
-        <VinylSection />
-      </div>
-    </VisibilityProvider>
+    <>
+      {isLoading && <VinylLoadingScreen onComplete={handleLoadingComplete} />}
+      <VisibilityProvider>
+        <Layout>
+          <ProgressBar progress={progress} />
+          <Home />
+          
+        </Layout>
+      </VisibilityProvider>
+    </>
   );
 };
 

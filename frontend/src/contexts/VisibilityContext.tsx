@@ -25,7 +25,6 @@ export const VisibilityProvider: React.FC<VisibilityProviderProps> = ({ children
   const [isEventSectionVisible, setEventSectionVisible] = useState(false);
   const [isTitleVisible, setTitleVisible] = useState(true);
 
-  // Sempre mostrar o título ao carregar a página
   useEffect(() => {
     setTitleVisible(true);
     setEventSectionVisible(false);

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-// Estilização do slogan com largura máxima e quebra de linha somente entre palavras
 const StyledSlogan = styled.p`
   font-size: 14pt;
   color: black;
@@ -38,11 +37,10 @@ const Letter = styled.span<{ delay: number }>`
   }
 `;
 
-// Função que adiciona espaços corretamente
 const formatText = (text: string) =>
   text.split("").map((char, index) => (
     <Letter key={index} delay={index * 50}>
-      {char === " " ? "\u00A0" : char} {/* Usa espaço inquebrável para manter espaçamento */}
+      {char === " " ? "\u00A0" : char} {}
     </Letter>
   ));
 

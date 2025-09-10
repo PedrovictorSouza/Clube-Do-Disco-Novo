@@ -1,4 +1,4 @@
-// src/hooks/useAnimation.ts
+
 import { useState, useEffect } from "react";
 
 export const useAnimation = (initialState = false) => {

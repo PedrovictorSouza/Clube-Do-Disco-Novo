@@ -22,7 +22,7 @@ const RecordInfoBlock: React.FC<RecordInfoBlockProps> = ({ carouselIndex, isMobi
         </div>
       </div>
       <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginTop: 18 }}>
-        {/* Botões de navegação só aparecem no desktop */}
+        {}
         {!isMobile && (
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', alignItems: 'center' }}>
             <button
@@ -45,7 +45,7 @@ const RecordInfoBlock: React.FC<RecordInfoBlockProps> = ({ carouselIndex, isMobi
             </button>
           </div>
         )}
-        {/* Pontinhos do carrossel para mobile */}
+        {}
         {isMobile && (
           <div style={{ display: 'flex', gap: 8, alignItems: 'center', justifyContent: 'center', width: '100%' }}>
             {carouselItems.map((_, idx) => (
@@ -65,8 +65,8 @@ const RecordInfoBlock: React.FC<RecordInfoBlockProps> = ({ carouselIndex, isMobi
           </div>
         )}
       </div>
-      {/* Local do evento */}
-      <div style={{ marginTop: 24, textAlign: 'center', fontFamily: 'Liquido Regular, sans-serif', fontSize: 18, color: '#fff', fontWeight: 500, letterSpacing: 1 }}>
+      {}
+      <div style={{ marginTop: 24, textAlign: 'center', fontFamily: 'system-ui, -apple-system, sans-serif', fontSize: 18, color: '#fff', fontWeight: 500, letterSpacing: 1 }}>
         <strong>Local:</strong> Rua secreta muito loca - Centro / SP
       </div>
     </>

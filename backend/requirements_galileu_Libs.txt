@@ -1,5 +1,0 @@
-openai
-python-dotenv
-Flask
-flask_cors
-gunicorn

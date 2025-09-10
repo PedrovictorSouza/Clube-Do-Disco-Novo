@@ -1,185 +1,9 @@
-@import url('./fonts.css');
-
-.baseBg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #c82c2c;
-    z-index: -2;
-}
-
-.main {
-    height: 100vh;
-    width: 100vw !important;
-    min-width: 100vw !important;
-    max-width: 100vw !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: visible;
-}
-
-.liquidoRegular {
-    font-family: 'Liquido Regular', sans-serif !important;
-}
-
-.liquidoFluid {
-    font-family: 'Liquido Fluid', sans-serif !important;
-}
-
-.titleBlock {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 0.5em;
-    text-align: left;
-    position: relative;
-    z-index: 2;
-    overflow: visible;
-    padding-bottom: 2vw;
-    padding-top: 0.5vw;
-}
-
-.titleRegular {
-    font-size: clamp(2.5rem, 7vw, 5rem);
-    display: block;
-    line-height: 1;
-    letter-spacing: 2px;
-    margin-bottom: 0;
-    position: relative;
-    z-index: 2;
-    color: #ffbb73;
-}
-
-.titleFluid {
-    background: transparent !important;
-    margin-top: 0 !important;
-    font-size: clamp(9rem, 24vw, 18rem);
-    display: block;
-    line-height: 0.7;
-    letter-spacing: 2px;
-    position: relative;
-    z-index: 1;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    color: #ff5e00;
-}
-
-.background {
-    background: #1c1c1c;
-    position: relative;
-    top: -10vh;
-    left: 0;
-    width: 100%;
-    min-height: 100vh;
-    z-index: -1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-}
-
-.spacer-under-bg {
-    width: 100%;
-    height: 52vh;
-    display: block;
-}
-
-.circle {
-    position: absolute;
-    border: 2px solid #ff5e00;
-    border-radius: 50%;
-    animation: expand 20s linear infinite;
-}
-
-.transitionCircle {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: red;
-    border-radius: 50%;
-    width: 0;
-    height: 0;
-    z-index: 1;
-    pointer-events: none;
-}
-
-.transitionCircle.active {
-    animation: transitionExpand 1.5s ease-in-out forwards;
-}
-
-@keyframes transitionExpand {
-    0% {
-        width: 0;
-        height: 0;
-    }
-    100% {
-        width: 3000px;
-        height: 3000px;
-    }
-}
-
-@keyframes expand {
-    0% {
-        width: 0;
-        height: 0;
-        opacity: 0;
-    }
-    10% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 1;
-    }
-    100% {
-        width: 2000px;
-        height: 2000px;
-        opacity: 0;
-    }
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    min-height: 48vh;
-    justify-content: flex-start;
-    position: relative;
-    margin-top: 52vh;
-    z-index: 2;
-}
-
 @media (max-width: 600px) {
-  .spacer-under-bg {
-    height: 54vw;
-  }
-  .container {
-    min-height: 48vw;
-    margin-top: 54vw;
-    padding-top: 24px;
-    padding-bottom: 24px;
-    box-sizing: border-box;
-  }
-  .title {
-    margin-top: 0 !important;
-  }
-  .button {
-    margin-bottom: 0 !important;
-  }
-}
-
-.animate-fadeIn {
-    align-self: center;
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.animate-fadeIn.hidden {
-    opacity: 0;
-    transform: translateY(-20px);
-    pointer-events: none;
+    .homeContainer {
+        min-height: 48vw;
+        padding-bottom: 24px;
+        box-sizing: border-box;
+    }
 }
 
 .button {
@@ -192,7 +16,7 @@
     align-items: center;
     justify-content: center;
     font-weight: 500;
-    letter-spacing: 0.01em; /* Reduzido para menor espaçamento entre letras */
+    letter-spacing: 0.01em;
     color: #000000;
     transition: all 300ms ease-in-out;
     border: 2px solid black;
@@ -257,18 +81,4 @@
 .secondButton:hover {
     background: white;
     color: black;
-}
-
-.title {
-    font-size: 16pt;
-    font-weight: 100;
-}
-
-.carousel-arrow {
-  display: inline-block;
-}
-@media (max-width: 600px) {
-  .carousel-arrow {
-    display: none !important;
-  }
 }

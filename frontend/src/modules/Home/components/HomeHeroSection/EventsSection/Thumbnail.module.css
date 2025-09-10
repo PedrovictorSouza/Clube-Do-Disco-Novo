@@ -1,0 +1,141 @@
+.thumbnail {
+    display: flex;
+    flex-direction: column;
+    background: #2f2f2f;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    height: 140px;
+    width: 200px;
+    flex-shrink: 0;
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+}
+
+.activeThumbnail {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(229, 9, 20, 0.4);
+    border: 2px solid #e50914;
+}
+
+.thumbnailImage {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    overflow: hidden;
+}
+
+.coverImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.thumbnail:hover .coverImage {
+    transform: scale(1.1);
+}
+
+
+.thumbnailContent {
+    padding: 0.5rem;
+    color: white;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+.thumbnailTitle {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem 0;
+    line-height: 1.1;
+    color: white;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.artist {
+    font-size: 0.7rem;
+    color: #cccccc;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.album {
+    font-size: 0.65rem;
+    color: #999999;
+    font-style: italic;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+@media (max-width: 768px) {
+    .thumbnail {
+        height: 120px;
+        width: 160px;
+    }
+    
+    .thumbnailImage {
+        height: 70px;
+    }
+    
+    .thumbnailContent {
+        padding: 0.4rem;
+    }
+    
+    .thumbnailTitle {
+        font-size: 0.75rem;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    }
+    
+    .artist {
+        font-size: 0.65rem;
+    }
+    
+    .album {
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .thumbnail {
+        height: 100px;
+        width: 140px;
+    }
+    
+    .thumbnailImage {
+        height: 60px;
+    }
+    
+    .thumbnailContent {
+        padding: 0.3rem;
+    }
+    
+    .thumbnailTitle {
+        font-size: 0.7rem;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    }
+    
+    .artist {
+        font-size: 0.6rem;
+    }
+    
+    .album {
+        font-size: 0.55rem;
+    }
+}

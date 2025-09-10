@@ -1,0 +1,71 @@
+.titleContainer {
+    background: red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titleRegular {
+    font-family: 'Adega', serif; 
+    max-width: 100%;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    line-height: 1;
+    letter-spacing: 2px;
+    color: #4b4b4b;
+    text-align: left;
+}
+
+.akonyHint {
+    font-family: 'Akony', system-ui, sans-serif !important;
+    font-size: 1rem !important;  
+    line-height: 1.25;
+    color: #4b4b4b;
+    margin-top: 1rem;
+    letter-spacing: 1px;
+    font-weight: 700;
+    display: block;
+    text-align: center;
+}
+
+
+.titleFluid {
+    font-family: 'Adega', serif; 
+    max-width: 100%;
+    font-size: clamp(9rem, 24vw, 18rem);
+    line-height: 0.7;
+    letter-spacing: 10px;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    color: #4b4b4b;
+}
+
+.titleRegular, .titleFluid {
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+    will-change: transform, opacity;
+}
+
+
+.titleBlock {
+    
+    
+    
+    
+    
+}
+
+
+.titleBlock::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(transparent 40%, rgba(0,0,0,0.25));
+    pointer-events: none;   
+    z-index: 0;             
+}
+
+
+.titleTextOverlay {
+    position: relative;
+    z-index: 1;
+}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TDD - Teste da Solução 1</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .canvas-container {
+            border: 2px solid #ccc;
+            margin: 10px 0;
+            display: inline-block;
+            position: relative;
+        }
+        .log {
+            background: #000;
+            color: #0f0;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        
+        /* TESTE: Máscara CSS */
+        .test-canvas {
+            mix-blend-mode: multiply;
+            background: #000000;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 TDD - Teste da Solução 1: Máscara CSS</h1>
+    
+    <div class="test-container">
+        <h2>Teste: Máscara CSS (mix-blend-mode: multiply)</h2>
+        <div class="canvas-container">
+            <canvas id="canvas3d" width="400" height="300" class="test-canvas"></canvas>
+        </div>
+        <button onclick="testSpline()">Testar Spline</button>
+        <button onclick="testSolution1()">Testar Solução 1</button>
+    </div>
+    
+    <div class="test-container">
+        <h2>📊 Log dos Testes</h2>
+        <div id="log" class="log"></div>
+        <button onclick="clearLog()">Limpar Log</button>
+    </div>
+
+    <script>
+        const log = (message) => {
+            const logElement = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            logElement.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+            logElement.scrollTop = logElement.scrollHeight;
+            console.log(message);
+        };
+
+        const clearLog = () => {
+            document.getElementById('log').innerHTML = '';
+        };
+
+        // Teste do Spline
+        async function testSpline() {
+            log('🔍 Teste: Carregando Spline...');
+            try {
+                const { Application } = await import("https://esm.sh/@splinetool/runtime");
+                const canvas = document.getElementById('canvas3d');
+                const app = new Application(canvas);
+                
+                await app.load(`https://prod.spline.design/665x5cR8YbeWjhoQ/scene.splinecode`);
+                log('✅ Spline carregado com mix-blend-mode: multiply');
+                
+                // Verificar se funcionou
+                setTimeout(() => {
+                    const computedStyle = window.getComputedStyle(canvas);
+                    log(`Background: ${computedStyle.backgroundColor}`);
+                    log(`Mix-blend-mode: ${computedStyle.mixBlendMode}`);
+                    log('🔍 Verificar visualmente se o azul virou preto');
+                }, 2000);
+                
+            } catch (error) {
+                log(`❌ Erro no teste do Spline: ${error}`);
+            }
+        }
+
+        // Teste da Solução 1
+        function testSolution1() {
+            log('🧪 TESTE DA SOLUÇÃO 1: MÁSCARA CSS');
+            const canvas = document.getElementById('canvas3d');
+            
+            if (!canvas) {
+                log('❌ FALHOU: Canvas não encontrado');
+                return false;
+            }
+            
+            const computedStyle = window.getComputedStyle(canvas);
+            const mixBlendMode = computedStyle.mixBlendMode;
+            const backgroundColor = computedStyle.backgroundColor;
+            
+            log(`Mix-blend-mode: ${mixBlendMode}`);
+            log(`Background color: ${backgroundColor}`);
+            
+            if (mixBlendMode === 'multiply') {
+                log('✅ SUCESSO: mix-blend-mode: multiply aplicado');
+                log('🔍 Verificar visualmente se o azul virou preto');
+                return true;
+            } else {
+                log('❌ FALHOU: mix-blend-mode não foi aplicado');
+                log('Mix-blend-mode atual:', mixBlendMode);
+                return false;
+            }
+        }
+
+        // Inicializar
+        log('🚀 TDD iniciado! Teste a Solução 1: Máscara CSS');
+    </script>
+</body>
+</html>
+
+
+

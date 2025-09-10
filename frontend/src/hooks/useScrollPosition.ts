@@ -6,8 +6,8 @@ interface ScrollPosition {
   viewportWidth: number;
   viewportHeight: number;
   scrollPercentage: number;
-  scrollYRelative: number; // scrollY / viewportHeight
-  scrollYPercentage: number; // (scrollY / viewportHeight) * 100
+  scrollYRelative: number; 
+  scrollYPercentage: number; 
 }
 
 export const useScrollPosition = (): ScrollPosition => {
@@ -27,12 +27,10 @@ export const useScrollPosition = (): ScrollPosition => {
       const scrollY = window.scrollY;
       const viewportWidth = window.innerWidth;
       const viewportHeight = window.innerHeight;
-      
-      // Calcular porcentagem de scroll baseada na altura total da página
+
       const totalHeight = document.documentElement.scrollHeight - viewportHeight;
       const scrollPercentage = totalHeight > 0 ? (scrollY / totalHeight) * 100 : 0;
-      
-      // Calcular valores relativos
+
       const scrollYRelative = scrollY / viewportHeight;
       const scrollYPercentage = (scrollY / viewportHeight) * 100;
 
@@ -51,14 +49,11 @@ export const useScrollPosition = (): ScrollPosition => {
       handleScroll(); // Recalcular após resize
     };
 
-    // Definir valores iniciais
     handleScroll();
 
-    // Adicionar listeners
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('resize', handleResize);
 
-    // Cleanup
     return () => {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
@@ -68,7 +63,6 @@ export const useScrollPosition = (): ScrollPosition => {
   return scrollPosition;
 };
 
-// Hook para detectar quando o scroll atinge uma posição específica (responsiva)
 export const useScrollTrigger = (
   triggerValue: number,
   triggerType: 'pixels' | 'percentage' | 'relative' = 'pixels',
@@ -94,7 +88,6 @@ export const useScrollTrigger = (
         currentValue = scrollPosition.scrollY;
     }
 
-    // Verificar se atingiu o valor desejado
     if (currentValue >= triggerValue - threshold && currentValue <= triggerValue + threshold) {
       setIsTriggered(true);
     } else {

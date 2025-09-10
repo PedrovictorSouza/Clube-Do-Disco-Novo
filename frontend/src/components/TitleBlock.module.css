@@ -1,8 +1,8 @@
 .titleBlock {
-  /* Adicione estilos de layout conforme necessário */
+  
 }
 .liquidoRegular {
-  font-family: 'Liquido Regular', sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
 }
 .titleRegular {
   font-size: 5rem;
@@ -10,7 +10,7 @@
   margin: 0;
 }
 .liquidoFluid {
-  font-family: 'Liquido Fluid', sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
 }
 .titleFluid {
   font-size: 12rem;

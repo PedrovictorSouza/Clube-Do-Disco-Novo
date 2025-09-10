@@ -22,9 +22,9 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
-    font-family: 'DynaPuff', 'Sour Gummy', 'Karla', sans-serif; /* Fonte principal, secundária e fallback */
-    background-color: white;
-    color: black;
+    font-family: 'DynaPuff', 'Sour Gummy', 'Karla', sans-serif; 
+    background-color: black !important;
+    color: white;
     position: relative;
     scroll-behavior: smooth;
   }

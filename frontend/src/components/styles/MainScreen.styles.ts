@@ -9,7 +9,6 @@ const liquidGradient = keyframes`
   100% { background-position: 0% 50%; }
 `;
 
-// Animações
 export const slideInMain = keyframes`
   from {
     transform: translateX(-100%);
@@ -19,14 +18,6 @@ export const slideInMain = keyframes`
   }
 `;
 
-// const slideOutSidebar = keyframes`
-//   from {
-//     transform: translateX(0);
-//   }
-//   to {
-//     transform: translateX(-100%);
-//   }
-// `;
 
 
 const fadeIn = keyframes`
@@ -40,16 +31,6 @@ const fadeIn = keyframes`
   }
 `;
 
-// const slideInSidebar = keyframes`
-//   from {
-//     transform: translateX(-100%);
-//   }
-//   to {
-//     transform: translateX(0);
-//   }
-// `;
-
-// Estilos
  export const CourseContainer = styled.div`
   display: flex;
   width: 100vw;
@@ -60,7 +41,6 @@ const fadeIn = keyframes`
   overflow-y: auto;
 `;
 
-// Sidebar fixo
 export const Sidebar = styled.div<{ $isOpen: boolean }>`
   width: 20vw;
   height: 100vh;
@@ -72,12 +52,9 @@ export const Sidebar = styled.div<{ $isOpen: boolean }>`
   flex-direction: column;
   padding-left: 20px;
 
-  // 🔥 Gradiente fluido com efeito líquido (continua rodando)
-  background: radial-gradient(circle, #ea4a19, #f1891d, #2d97d5, #f6b5be);
+  background: radial-gradient(circle, #ea4a19, #f1891d, #000000, #f6b5be);
   background-size: 300% 300%;
-  animation: ${liquidGradient} 15s ease-in-out infinite;  // 🔥 Mantém o efeito líquido
-
-  // 🎯 Animação de entrada e saída do sidebar
+  animation: ${liquidGradient} 15s ease-in-out infinite;
   transform: translateX(${({ $isOpen }) => ($isOpen ? "0" : "-100%")});
   transition: transform 0.8s ease-out;
 
@@ -112,9 +89,9 @@ cursor: pointer;
 transition: background 0.3s, transform 0.3s;
 font-weight: bold;
 
-opacity: 0;  // Mantém invisível até a animação começar
+opacity: 0;
 animation: ${fadeIn} 0.5s ease-out forwards;
-animation-delay: ${({ delay = 0 }) => `${delay}ms`}; // Define o atraso para cada item
+animation-delay: ${({ delay = 0 }) => `${delay}ms`};
 
 &:hover {
   
@@ -127,22 +104,21 @@ animation-delay: ${({ delay = 0 }) => `${delay}ms`}; // Define o atraso para cad
 `;
 
 
-// Seção do topo branco
 export const TopSection = styled.div`
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
   margin-bottom: 0;
-  background-image: url('/assets/Customization-bg.png'); // Substitua pelo caminho da sua imagem
-  background-size: cover;       // Ajusta a imagem para cobrir toda a área
-  background-position: center;  // Centraliza a imagem
-  background-repeat: no-repeat; // Evita repetição
+  background-image: url('/assets/Customization-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 `;
 
 
 export const MainContent = styled.div`
   padding: 30px;
-  background-color: rgb(39, 62, 90);
+  background-color: black;
 
   h3 {
     margin-left: 0px;
@@ -170,7 +146,7 @@ export const HamburgerButton = styled.button`
   position: absolute;
   top: 10px;
   left: 10px;
-  z-index: 1000;
+  z-index: 9999;
   width: 30px;
   height: 30px;
   border-radius: 50px;
@@ -181,18 +157,17 @@ export const CloseButton = styled.button`
   position: absolute;
   top: 10px;
   left: 10px;
-  z-index: 1001;
+  z-index: 9999;
   width: 30px;
   height: 30px;
   border-radius: 50px;
   background: none;
   color: white;
-  border: 2px solid white; // Um pouco acima do outro botão para evitar conflitos
+  border: 2px solid white;
 `;
 
 
 
-// Mantendo suas margens e ajustes
 export const ModuleTitle = styled.h2`
   font-size: 56px;
   margin-bottom: 20px;

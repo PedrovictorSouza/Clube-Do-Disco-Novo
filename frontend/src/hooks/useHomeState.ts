@@ -1,10 +1,9 @@
-// hooks/useHomeState.ts
+
 import { useState, useEffect } from "react";
 import { carouselItems } from "../modules/carouselItems";
 
 export function useHomeState() {
   const [startTransition, setStartTransition] = useState(false);
-  const [showTransitionScreen, setShowTransitionScreen] = useState(false);
   const [hideButton, setHideButton] = useState(false);
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -34,14 +33,6 @@ export function useHomeState() {
     setStartTransition(true);
   };
 
-  useEffect(() => {
-    if (startTransition) {
-      const timer = setTimeout(() => {
-        setShowTransitionScreen(true);
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [startTransition]);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -63,7 +54,6 @@ export function useHomeState() {
 
   return {
     startTransition,
-    showTransitionScreen,
     hideButton,
     carouselIndex,
     isMobile,

@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import AnimatedContainer from "./AnimatedContainer";
 
-// Define a interface para as propriedades do módulo
 interface ModuleProps {
   module: {
     id: string;

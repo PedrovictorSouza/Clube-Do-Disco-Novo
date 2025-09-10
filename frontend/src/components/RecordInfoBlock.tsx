@@ -1,5 +1,5 @@
 import React from "react";
-import { carouselItems } from "../modules/carouselItems";
+import { carouselItems } from "../modules/Carousel/carouselItems";
 import CarouselNavigation from "./CarouselNavigation/CarouselNavigation";
 
 interface RecordInfoBlockProps {
@@ -33,7 +33,7 @@ const RecordInfoBlock: React.FC<RecordInfoBlockProps> = ({ carouselIndex, isMobi
         </div>
       </div>
       
-      {/* Botões de navegação só aparecem no desktop */}
+      {}
       {!isMobile && (
         <CarouselNavigation
           carouselIndex={carouselIndex}
@@ -44,7 +44,7 @@ const RecordInfoBlock: React.FC<RecordInfoBlockProps> = ({ carouselIndex, isMobi
         />
       )}
       
-      {/* Pontinhos do carrossel para mobile */}
+      {}
       {isMobile && (
         <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginTop: 18 }}>
           <div style={{ display: 'flex', gap: 8, alignItems: 'center', justifyContent: 'center', width: '100%' }}>

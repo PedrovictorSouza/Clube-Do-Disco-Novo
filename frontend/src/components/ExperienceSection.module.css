@@ -19,8 +19,8 @@
   gap: 32px;
   margin-bottom: 16px;
   overflow-x: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE e Edge */
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
   overscroll-behavior-x: contain;
 }
 .circlesRow::-webkit-scrollbar {
@@ -49,8 +49,8 @@
   display: flex;
   gap: 32px;
   padding: 0px 32px;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE e Edge */
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
 }
 .line {
   width: 100%;

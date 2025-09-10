@@ -1,0 +1,81 @@
+.rotatingImage {
+    transition: transform 0.3s ease-out; 
+    position: absolute;
+    z-index: 999;
+    transform-origin: center center;
+}
+
+
+
+
+.rotatingImageEntering {
+    animation: diskEnter 1.5s ease-out forwards;
+    animation-fill-mode: forwards;
+}
+
+
+.rotatingImageEntering .rotatingImage {
+    animation-play-state: paused;
+}
+
+@keyframes diskEnter {
+    0% {
+        
+        transform: translateX(-100%) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: translateX(-50%) rotate(-90deg);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+
+.rotatingImageMobileEntering {
+    animation: diskEnterMobile 1.5s ease-out forwards;
+}
+
+@keyframes diskEnterMobile {
+    0% {
+        
+        transform: translateY(-100%) rotate(-180deg);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(-50%) rotate(-90deg);
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+
+.rotatingImageDesktop {
+    width: 48%;
+    top: 10%;
+    left: 51%;
+}
+
+
+.rotatingImageMobile {
+    width: 80%;
+    top: 70%;
+    left: 40%;
+    margin-top: -30%; 
+    margin-left: -30%; 
+}
+
+
+.rotatingImageMobileStage1 {
+    width: 80%;
+    top: 75%; 
+    left: 40%;
+    margin-top: -30%;
+    margin-left: -30%;
+}

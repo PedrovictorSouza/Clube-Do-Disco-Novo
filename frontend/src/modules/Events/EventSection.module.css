@@ -5,28 +5,28 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transform: translateY(40vh); /* Posição inicial ainda mais baixa */
+  transform: translateY(40vh); 
   transition: transform 0.8s ease-out, opacity 0.8s ease-out;
   position: relative;
-  opacity: 0; /* Inicialmente invisível */
-  pointer-events: none; /* Não interagível inicialmente */
-  overflow: hidden; /* Para conter a animação */
+  opacity: 0; 
+  pointer-events: none; 
+  overflow: hidden; 
 }
 
 .container.triggered {
-  transform: translateY(0); /* Move para posição normal quando triggerado */
+  transform: translateY(0); 
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10000; /* Maior que o VinylSection (9999) */
-  opacity: 1; /* Torna visível quando triggerado */
-  pointer-events: auto; /* Torna interagível quando triggerado */
+  z-index: 10000; 
+  opacity: 1; 
+  pointer-events: auto; 
 }
 
-/* Ajuste específico para mobile */
+
 @media (max-width: 768px) {
   .container.triggered {
-    transform: translateY(-15vh); /* Move 15vh para cima no mobile (aumentado de 10vh) */
+    transform: translateY(-15vh); 
   }
 }
 
@@ -38,94 +38,92 @@
   max-width: 800px;
   padding: 20px;
   position: relative;
-  z-index: 10; /* Aumentado para ficar acima do título PROGRAMAÇÃO */
+  z-index: 2; 
 }
 
 .titleSection {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100vw; /* Largura total da viewport */
-  height: 100vh; /* Altura total da viewport */
-  z-index: 1; /* Fica atrás dos records */
-  overflow: hidden; /* Esconde o que sai da tela */
-}
-
-.marqueeContainer {
-  position: absolute;
-  top: 50%;
-  left: -20vw; /* Começa 20vw antes da borda esquerda */
-  transform: translateY(-50%);
-  display: flex;
-  animation: marquee 30s linear infinite;
-  white-space: nowrap;
-  width: 140vw; /* 100vw + 20vw de cada lado */
+  left: 50%;
+  width: 100vw; 
+  height: 100vh; 
+  z-index: 1; 
+  overflow: hidden;
+  transform: translateX(-50%); 
 }
 
 .programTitle {
-  font-family: 'Akony', sans-serif;
-  font-size: clamp(4rem, 8vw, 8rem); /* Reduzido para caber na tela */
-  font-weight: bold;
-  color: rgba(241, 137, 29, 1); /* 100% de opacidade */
-  letter-spacing: clamp(8px, 2vw, 20px); /* Espaçamento responsivo */
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: clamp(8rem, 15vw, 12rem);
+  font-weight: 900;
+  color: rgba(241, 137, 29, 1); 
+  letter-spacing: 8px;
   text-transform: uppercase;
   margin: 0;
-  padding: 0 50px; /* Espaçamento entre as cópias */
   white-space: nowrap;
-  position: relative; /* Mudou para relative */
-  z-index: 0; /* Fica atrás de tudo */
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%) rotate(-30deg); 
+  animation: marquee 20s linear infinite;
+  z-index: 0; 
+}
+
+.programTitle:nth-child(2) {
+  animation-delay: -10s; 
+}
+
+
+@media (max-width: 768px) {
+  .programTitle {
+    top: 30%; 
+    z-index: -1; 
+  }
 }
 
 @keyframes marquee {
   0% {
-    transform: translateY(-50%) translateX(0);
+    transform: translateY(-50%) rotate(-30deg) translateX(100%);
   }
   100% {
-    transform: translateY(-50%) translateX(-33.33%);
+    transform: translateY(-50%) rotate(-30deg) translateX(-100%);
   }
 }
 
 
-
-/* Ajuste específico para mobile */
 @media (max-width: 768px) {
-  .marqueeContainer {
-    top: 30%;
-    left: -15vw; /* Menos offset no mobile */
-    width: 130vw; /* Largura ajustada para mobile */
-    transform: translateY(-30%);
-  }
-  
-  .programTitle {
-    z-index: -1; /* Fica ainda mais atrás no mobile */
-    font-size: clamp(3rem, 6vw, 5rem); /* Tamanho menor no mobile */
-    letter-spacing: clamp(4px, 1.5vw, 12px); /* Espaçamento menor no mobile */
-    padding: 0 30px; /* Espaçamento menor no mobile */
-  }
-  
   @keyframes marquee {
     0% {
-      transform: translateY(-30%) translateX(0);
+      transform: translateY(-30%) rotate(-30deg) translateX(100%);
     }
     100% {
-      transform: translateY(-30%) translateX(-33.33%);
+      transform: translateY(-30%) rotate(-30deg) translateX(-100%);
     }
   }
 }
-
-
 
 
 .infoBlock {
   margin-top: 20px;
   width: 100%;
   max-width: 400px;
-  position: relative;
-  z-index: 15; /* Garante que os botões fiquem acima de tudo */
 }
 
 .buttonWrapper {
   margin-top: 32px;
+}
+
+.carouselWrapper {
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carouselWrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .button {

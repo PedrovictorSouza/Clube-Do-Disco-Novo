@@ -1,6 +1,44 @@
-# React + TypeScript + Vite
+# Clube do Disco - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Projeto frontend do Clube do Disco desenvolvido com React + TypeScript + Vite.
+
+## Tecnologias
+
+- React 18
+- TypeScript
+- Vite
+- Tailwind CSS
+- CSS Modules
+
+## Instalação e Execução
+
+### Desenvolvimento Local
+
+```bash
+# Instalar dependências
+cd frontend
+npm install
+
+# Executar em modo de desenvolvimento
+npm run dev
+```
+
+### Docker
+
+```bash
+# Construir e executar com Docker Compose
+docker-compose up --build
+```
+
+O projeto estará disponível em `http://localhost:80`
+
+## Estrutura do Projeto
+
+- `src/components/` - Componentes reutilizáveis
+- `src/modules/` - Módulos específicos da aplicação
+- `src/hooks/` - Hooks customizados
+- `src/styles/` - Estilos globais e configurações
+- `src/types/` - Definições de tipos TypeScript
 
 Currently, two official plugins are available:
 

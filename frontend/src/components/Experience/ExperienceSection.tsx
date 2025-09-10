@@ -8,7 +8,7 @@ const ExperienceSection: React.FC = () => {
       <div className={styles.topArea}>
         <CirclesScroller />
       </div>
-      {/* Texto removido, agora aparece apenas no parallax abaixo */}
+      {}
     </section>
   );
 };

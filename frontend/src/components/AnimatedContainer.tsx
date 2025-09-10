@@ -1,7 +1,6 @@
 import React, { ReactNode } from "react";
 import { useFadeIn } from "../hooks/useFadeIn";
 
-// Define as propriedades que o componente aceita, incluindo `children`.
 interface AnimatedContainerProps {
   children: ReactNode; // Define `children` como propriedade obrigatória
 }

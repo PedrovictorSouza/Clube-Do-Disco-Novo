@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Ultimate do Spline</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .canvas-container {
+            border: 2px solid #ccc;
+            margin: 10px 0;
+            display: inline-block;
+        }
+        .log {
+            background: #000;
+            color: #0f0;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Teste Ultimate do Spline - Verificar Background</h1>
+    
+    <div class="test-container">
+        <h2>Teste: Verificar se o fundo mudou para preto</h2>
+        <div class="canvas-container">
+            <canvas id="canvas3d" width="400" height="300"></canvas>
+        </div>
+        <button onclick="testSpline()">Testar Spline</button>
+        <button onclick="testBackground()">Verificar Background</button>
+        <button onclick="testAggressive()">Teste Agressivo</button>
+    </div>
+    
+    <div class="test-container">
+        <h2>📊 Log dos Testes</h2>
+        <div id="log" class="log"></div>
+        <button onclick="clearLog()">Limpar Log</button>
+    </div>
+
+    <script>
+        const log = (message) => {
+            const logElement = document.getElementById('log');
+            const timestamp = new Date().toLocaleTimeString();
+            logElement.innerHTML += `<div>[${timestamp}] ${message}</div>`;
+            logElement.scrollTop = logElement.scrollHeight;
+            console.log(message);
+        };
+
+        const clearLog = () => {
+            document.getElementById('log').innerHTML = '';
+        };
+
+        // Teste do Spline
+        async function testSpline() {
+            log('🔍 Teste: Carregando Spline...');
+            try {
+                const { Application } = await import("https://esm.sh/@splinetool/runtime");
+                const canvas = document.getElementById('canvas3d');
+                const app = new Application(canvas);
+                
+                await app.load(`https://prod.spline.design/665x5cR8YbeWjhoQ/scene.splinecode`);
+                log('✅ Spline carregado');
+                
+                // Tentar alterar background
+                log('🔍 Tentando alterar background...');
+                
+                // Método 1: Via renderer
+                if (app.renderer && typeof app.renderer.setClearColor === 'function') {
+                    app.renderer.setClearColor(0x000000);
+                    log('✅ setClearColor(0x000000) aplicado');
+                }
+                
+                // Método 2: Via scene
+                if (app.scene) {
+                    try {
+                        const THREE = await import('https://esm.sh/three');
+                        app.scene.background = new THREE.Color(0x000000);
+                        log('✅ scene.background = new THREE.Color(0x000000) aplicado');
+                    } catch (error) {
+                        log('❌ Erro ao importar THREE.js, tentando string...');
+                        app.scene.background = '#000000';
+                        log('✅ scene.background = "#000000" aplicado');
+                    }
+                }
+                
+                // Método 3: Forçar re-render
+                if (app.renderer && app.scene && app.camera) {
+                    app.renderer.render(app.scene, app.camera);
+                    log('✅ Re-render forçado');
+                }
+                
+                // Método 4: Monkey patch
+                if (app.renderer && typeof app.renderer.render === 'function') {
+                    log('🔍 Aplicando Monkey Patch...');
+                    const originalRender = app.renderer.render;
+                    app.renderer.render = function(scene, camera) {
+                        this.setClearColor(0x000000);
+                        if (scene) {
+                            scene.background = '#000000';
+                        }
+                        log('🎨 Monkey patch: background forçado para preto');
+                        return originalRender.call(this, scene, camera);
+                    };
+                    log('✅ Monkey Patch aplicado');
+                }
+                
+                log('✅ Teste do Spline concluído');
+                
+            } catch (error) {
+                log(`❌ Erro no teste do Spline: ${error}`);
+            }
+        }
+
+        // Teste do Background
+        function testBackground() {
+            log('🔍 Teste: Verificando background...');
+            const canvas = document.getElementById('canvas3d');
+            
+            if (!canvas) {
+                log('❌ Canvas não encontrado');
+                return false;
+            }
+            
+            const computedStyle = window.getComputedStyle(canvas);
+            const backgroundColor = computedStyle.backgroundColor;
+            log(`Background color: ${backgroundColor}`);
+            
+            if (backgroundColor === 'rgb(0, 0, 0)' || backgroundColor === 'black') {
+                log('✅ SUCESSO: Background está preto!');
+                return true;
+            } else {
+                log('❌ FALHOU: Background ainda não está preto');
+                return false;
+            }
+        }
+
+        // Teste Agressivo
+        function testAggressive() {
+            log('🔍 Teste Agressivo: Verificando background...');
+            const canvas = document.getElementById('canvas3d');
+            
+            if (!canvas) {
+                log('❌ Canvas não encontrado');
+                return false;
+            }
+            
+            const computedStyle = window.getComputedStyle(canvas);
+            const backgroundColor = computedStyle.backgroundColor;
+            log(`Background color: ${backgroundColor}`);
+            
+            // Verificar se não é transparente
+            if (backgroundColor === 'rgba(0, 0, 0, 0)' || backgroundColor === 'transparent') {
+                log('❌ FALHOU: Background ainda é transparente');
+                log('O Spline está desenhando o fundo azul diretamente no canvas');
+                return false;
+            }
+            
+            if (backgroundColor === 'rgb(0, 0, 0)' || backgroundColor === 'black') {
+                log('✅ SUCESSO: Background está preto!');
+                return true;
+            } else {
+                log('❌ FALHOU: Background ainda não está preto');
+                log('Background atual:', backgroundColor);
+                return false;
+            }
+        }
+
+        // Inicializar
+        log('🚀 Teste Ultimate do Spline iniciado! Clique nos botões para testar.');
+    </script>
+</body>
+</html>
